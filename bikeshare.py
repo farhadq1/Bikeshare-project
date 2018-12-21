@@ -28,7 +28,7 @@ def get_filters():
         city=input("Enter a city (Chicago, New York City or Washington) to begin: \n").lower()
         if city in CITY_DATA:
             print('\nYou selected {}!\n'.format(city.title()))
-            restart = input('Write \'yes\' now if this is not what you wanted to enter 
+            restart = input('Write \'yes\' now if this is not what you wanted to enter
 			    and \'no\' otherwise.\n')
             if restart.lower() != 'yes':
                 break
@@ -91,7 +91,7 @@ def load_data(city, month, day):
             if months[i]==month:
                 month=i+1
         df= df.loc[df['Month(1-12)'] == month]
-    else:
+    else: 
         #frequent_month=months[(df['Month(1-12)'].value_counts().mode()[0])-1]
         print ("\nCalculating most frequent month of travel . . .")
 
