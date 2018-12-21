@@ -13,39 +13,33 @@ def get_filters():
 
     Returns:
         (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month
-	      #filter 
-	(str) day - name of the day of week to filter by, or "all" to apply no 
-	      #day filter
+        (str) month - name of the month to filter by, or "all" to apply no month filter
+        (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
 
 
 
     print('Hello! Let\'s explore some US bikeshare data!')
-    # get user input for city (chicago, new york city, washington). HINT: Use a 
-    #while loop to handle invalid inputs
+    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         city=input("Enter a city (Chicago, New York City or Washington) to begin: \n").lower()
         if city in CITY_DATA:
             print('\nYou selected {}!\n'.format(city.title()))
-            restart = input('Write \'yes\' now if this is not what you wanted to enter
-			    and \'no\' otherwise.\n')
+            restart = input('Write \'yes\' now if this is not what you wanted to enter and \'no\' otherwise.\n')
             if restart.lower() != 'yes':
                 break
     city=city.lower()
     # get user input for month (all, january, february, ... , june)We
     months=['all','jan','feb','mar','apr','may','jun']
     while True:
-        month=input("Enter a month (Jan,Feb,Mar,Apr,May or Jun) to filter by month or
-		    'all' for no filters: \n").lower()
+        month=input("Enter a month (Jan,Feb,Mar,Apr,May or Jun) to filter by month or 'all' for no filters: \n").lower()
         if month.lower() in months:
             break
     days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday','All']
 
     while True:
         #try:
-        day=input("Enter day (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday) 
-		  to filter by day or 'all' for no filters: \n")
+        day=input("Enter day (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday) to filter by day or 'all' for no filters: \n")
         if day.title() in days:
             break
 
@@ -91,7 +85,7 @@ def load_data(city, month, day):
             if months[i]==month:
                 month=i+1
         df= df.loc[df['Month(1-12)'] == month]
-    else: 
+    else:
         #frequent_month=months[(df['Month(1-12)'].value_counts().mode()[0])-1]
         print ("\nCalculating most frequent month of travel . . .")
 
@@ -141,10 +135,8 @@ def station_stats(df):
     combo= df['Start Station'] + ' to ' + df['End Station']
 
 
-    print ("Most common start station was {}, most common end station was {} 
-	   ".format(most_common_startstation,most_common_endstation))
-    print ('Most common combination(s) of start and end stations:\n{}.\nCount:{}'
-	   .format(max_occurance(combo),combo.value_counts().max()))
+    print ("Most common start station was {}, most common end station was {} ".format(most_common_startstation,most_common_endstation))
+    print ('Most common combination(s) of start and end stations:\n{}.\nCount:{}'.format(max_occurance(combo),combo.value_counts().max()))
     print ("This took %s seconds.\n" % (time.time() - start_time))
     print('-'*40)
 
@@ -186,9 +178,7 @@ def user_stats(df):
         earliest_birth_year=df['Birth Year'].min()
         recent_birth_year=df['Birth Year'].max()
         common_birth_year=max_occurance(df['Birth Year'])
-        print('The earliest birth year was: {}.\nMost recent birth year was: 
-	      {}.\nMost common birth year was {}'.format(earliest_birth_year,
-	      recent_birth_year,common_birth_year))
+        print('The earliest birth year was: {}.\nMost recent birth year was: {}.\nMost common birth year was {}'.format(earliest_birth_year,recent_birth_year,common_birth_year))
     else:
         print("No birth year data available")
 
@@ -201,8 +191,8 @@ def display_data(df):
 
     count=0
     while True:
-        display=input("\nDo you want to display individual trip data 
-		      (5 entries everytime you type 'yes')? : ").lower()
+
+        display=input("\nDo you want to display individual trip data (5 entries everytime you type 'yes')? : ").lower()
         if (display == 'yes') and (count<len(df)):
             print("Printing ...")
             print(df[count:count+5])
